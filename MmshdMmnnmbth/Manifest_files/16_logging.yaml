@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: event-simulator-pod
+spec:
+  containers:
+    - name: event-simulator
+      image: kodekloud/event-simulator
+    - name: image-processor
+      image: some-image-processor
+
+# kubectl logs -f event-simulator-pod event-simulator
+# will show logs of event-simulator container
+# kubectl logs -f event-simulator-pod image-processor
+# will show logs of image-processor container
+# because the logging is specific inside the pod

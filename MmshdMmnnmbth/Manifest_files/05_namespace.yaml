@@ -1,0 +1,4 @@
+apiVersion: v1            # To create the namespace $ kubectl create -f 05_namespace.yaml
+kind: Namespace           # or  
+metadata:                 # $ kubectl create namespace dev
+  name: dev

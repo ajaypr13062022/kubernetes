@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: random-number-generator
+spec:
+  containers:
+    - image: alpine
+      name: alpine
+      command: ["/bin/bash","-c"]
+      args: ["shuf -i 1-100 -n 1 >> /opt/number.out;"]
+      volumeMounts:
+        - mountPath: /opt
+          name: data-volume
+    volumes:
+      - name: data-volume
+        #hostPath:            #Okay for single node
+          #path: /data
+          #type: Directory
+        awsElasticBlockStore:
+          volumeID: <volume-id>
+          fsType: ext4
+        
